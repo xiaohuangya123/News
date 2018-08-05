@@ -2,6 +2,7 @@ package com.xhy.reload.news.utils;
 
 import android.app.Application;
 import android.content.Context;
+import android.view.View;
 
 import org.litepal.LitePal;
 

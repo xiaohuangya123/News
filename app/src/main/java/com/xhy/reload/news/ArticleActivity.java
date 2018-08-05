@@ -4,7 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -18,11 +19,9 @@ import com.xhy.reload.news.model.Comment;
 import com.xhy.reload.news.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import okhttp3.internal.Util;
 
 public class ArticleActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "ArticleActivity";
@@ -32,24 +31,20 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
     private TextView articleDetailLikeNumTv;
     private ImageView articleDetailLikeNumImg;
     private RecyclerView articleHotCommentRv;
+    private Toolbar articleDetailToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
 
-        //文章详情页左上角返回键
-        articleDetailBackBtn = findViewById(R.id.articleDetailBack);
-        articleDetailBackBtn.setOnClickListener(this);
+        articleDetailToolbar = findViewById(R.id.id_article_detail_toolbar);
+        setSupportActionBar(articleDetailToolbar);
 
         //文件详情页文章具体内容webview实现
         articleContentWebView = findViewById(R.id.article_content);
         articleContentWebView.setWebViewClient(new WebViewClient());
-        String origianlArticleContent = getArticleContent();
-        String cssLayout = "<style>*{padding: 0;margin: 0}#webview_content_wrapper{margin: 10px 15px 0 15px;} p{color: #333333;line-height: 2em;font-size:17px;opacity: 1;} img{margin-top: 13px;margin-bottom: 15px;width: 100%;}</style>";
-        String htmlModify = origianlArticleContent.replaceAll("<br/>", "");
-        String articleDetailHtml = cssLayout + "<body><div id='webview_content_wrapper'>" + htmlModify + "</div></body>";
-        articleContentWebView.loadDataWithBaseURL(null, articleDetailHtml, "text/html", "UTF-8", null);
+        articleContentWebView.loadDataWithBaseURL(null, Utils.getArticleHtml(), "text/html", "UTF-8", null);
 
         //文章详情页喜欢人数按钮
         articleDetailLikeNumRL = findViewById(R.id.id_article_detail_likenum_RL);
@@ -71,9 +66,6 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.articleDetailBack:
-                super.onBackPressed();
-                return;
             case R.id.id_article_detail_likenum_tv:
                 articleDetailLikeNumTv.setSelected(true);
                 articleDetailLikeNumTv.setText(new Random().nextInt(10000) + "人喜欢");
@@ -85,19 +77,12 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    //得到文章具体内容的html
-    private String getArticleContent(){
-        String articleContent= "<p><span style=\"\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;华春莹在当天举行的外交部例行记者会上对《环球时报》记者表示，中方一直在关注日本福岛核泄漏极其后续影响。\n" +
-                "“我注意到在福岛核事故发生六周年之际，日本国内媒体也在大量报道评论，总体认为日本政府在污染水和土壤及放射性废弃物处理方面缺乏有效手段，\n" +
-                "向海洋排放核污水给周边海洋环境和民众健康带来隐患，有关对策滞后且信息公开不透明，食品安全等相关数据缺乏足够说服力。</span></p>\n" +
-                "<div class=\"image-package\"><img src=\"http://duty.oss-cn-shenzhen.aliyuncs.com/8380e6fa-db21-4b7c-83e1-34bff9ba89a0tyggh2.png\" data-by-webuploader=\"true\"/>\n" +
-                "</div><p>表示，中方一直在关注日本福岛核泄漏极其后续影响。“我注意到在福岛核事故发生六周年之际，日本国内媒体也在大量报道评论，\n" +
-                "总体认为日本政府在污染水和土壤及放射性废弃物处理方面缺乏有效手段，向海洋排放核污水给周边海洋环境和民众健康带来隐患，\n" +
-                "有关对策滞后且信息公开不透明，食品安全等相关数据缺乏足够说服力。</p><div class=\"image-package\">\n" +
-                "<img src=\"http://duty.oss-cn-shenzhen.aliyuncs.com/b25eaee8-f133-4618-9411-94685f4ae2detyggh4.png\" data-by-webuploader=\"true\"/></div>\n" +
-                "<div class=\"image-package\"><img src=\"http://duty.oss-cn-shenzhen.aliyuncs.com/726d283c-8c8d-4e34-916b-52a78bca3ba0tyggh1.png\" data-by-webuploader=\"true\"/>\n" +
-                "</div><p><span style=\"\"></span><br/></p>";
-        return articleContent;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(android.R.id.home == item.getItemId()){
+            onBackPressed();
+        }
+        return true;
     }
 
     //获取热门跟帖内容

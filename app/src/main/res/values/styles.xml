@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/material_deep_teal_500</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -30,6 +30,15 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <!--<item name="android:windowBackground">@drawable/v</item>-->
         <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <style name="AppTheme.ArticleDetailToolbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Actionbar color -->
+        <item name="colorPrimary">@color/material_deep_teal_500</item>
+        <!--Status bar color-->
+        <item name="colorPrimaryDark">@color/material_deep_teal_500</item>
+        <!--Window color-->
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
 </resources>

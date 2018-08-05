@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mainArticleListViewpager;
 
     private List<Column> columnList;
-    private String isColumnChanged;
 
 
     @Override

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,12 @@ import com.xhy.reload.news.utils.Utils;
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class MainContentFragment extends Fragment {
 
-    private TextView textView;
     private RecyclerView articleItemRecyclerView;
 
 
@@ -108,6 +109,7 @@ public class MainContentFragment extends Fragment {
 
     private List<Article> getArticleListFromDB(){
         List<Article> articleList = LitePal.findAll(Article.class);
+        Collections.shuffle(articleList);
         return articleList;
     }
 }

@@ -8,7 +8,7 @@ public class Utils {
     private static int[] imgSrc = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,R.drawable.f,
             R.drawable.g,R.drawable.h,R.drawable.i,R.drawable.j,R.drawable.k,R.drawable.l,
             R.drawable.m,R.drawable.n,R.drawable.o,R.drawable.p,R.drawable.q,R.drawable.r,
-            R.drawable.s,R.drawable.t};
+            R.drawable.s,R.drawable.t,R.drawable.u,R.drawable.v};
 
     private static String[] addrs = {"香港特别行政区","广东南宁市","福建省","浙江省杭州市","河北省廊坊市","安徽省六安市",
             "四川省成都市","山西省太原市","北京市","山东省威海","安徽省阜阳市","河南省洛阳市",
@@ -77,6 +77,23 @@ public class Utils {
 
     public static String getComContent(){
         return comContent[new Random().nextInt(comContent.length)];
+    }
+
+    public static String getArticleHtml(){
+        String origianlArticleContent = "<p><span style=\"\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;华春莹在当天举行的外交部例行记者会上对《环球时报》记者表示，中方一直在关注日本福岛核泄漏极其后续影响。\n" +
+                "“我注意到在福岛核事故发生六周年之际，日本国内媒体也在大量报道评论，总体认为日本政府在污染水和土壤及放射性废弃物处理方面缺乏有效手段，\n" +
+                "向海洋排放核污水给周边海洋环境和民众健康带来隐患，有关对策滞后且信息公开不透明，食品安全等相关数据缺乏足够说服力。</span></p>\n" +
+                "<div class=\"image-package\"><img src=\"http://duty.oss-cn-shenzhen.aliyuncs.com/8380e6fa-db21-4b7c-83e1-34bff9ba89a0tyggh2.png\" data-by-webuploader=\"true\"/>\n" +
+                "</div><p>表示，中方一直在关注日本福岛核泄漏极其后续影响。“我注意到在福岛核事故发生六周年之际，日本国内媒体也在大量报道评论，\n" +
+                "总体认为日本政府在污染水和土壤及放射性废弃物处理方面缺乏有效手段，向海洋排放核污水给周边海洋环境和民众健康带来隐患，\n" +
+                "有关对策滞后且信息公开不透明，食品安全等相关数据缺乏足够说服力。</p><div class=\"image-package\">\n" +
+                "<img src=\"http://duty.oss-cn-shenzhen.aliyuncs.com/b25eaee8-f133-4618-9411-94685f4ae2detyggh4.png\" data-by-webuploader=\"true\"/></div>\n" +
+                "<div class=\"image-package\"><img src=\"http://duty.oss-cn-shenzhen.aliyuncs.com/726d283c-8c8d-4e34-916b-52a78bca3ba0tyggh1.png\" data-by-webuploader=\"true\"/>\n" +
+                "</div><p><span style=\"\"></span><br/></p>";
+        String cssLayout = "<style>*{padding: 0;margin: 0}#webview_content_wrapper{margin: 10px 15px 0 15px;} p{color: #333333;line-height: 2em;font-size:17px;opacity: 1;} img{margin-top: 13px;margin-bottom: 15px;width: 100%;}</style>";
+        String htmlModify = origianlArticleContent.replaceAll("<br/>", "");
+        String articleDetailHtml = cssLayout + "<body><div id='webview_content_wrapper'>" + htmlModify + "</div></body>";
+        return articleDetailHtml;
     }
 
 

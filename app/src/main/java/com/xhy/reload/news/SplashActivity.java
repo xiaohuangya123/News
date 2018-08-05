@@ -24,7 +24,9 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -73,7 +75,6 @@ public class SplashActivity extends AppCompatActivity {
                 emitter.onComplete();
             }
         }).subscribeOn(Schedulers.io())
-          .observeOn(Schedulers.io())
           .flatMap(new Function<String, ObservableSource<String>>() {
               @Override
               public ObservableSource<String> apply(String s) throws Exception {
@@ -84,7 +85,7 @@ public class SplashActivity extends AppCompatActivity {
                   }
               return Observable.just("columnNotChange");
            }
-        })
+        }).observeOn(AndroidSchedulers.mainThread())
           .subscribe(new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) { }

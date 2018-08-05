@@ -1,328 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/id_article_detail_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back">
 
-        <!--文章详情页正文上方部分，返回，跟帖数量，来源，订阅按钮 开始-->
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/articleDetailBack"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:text="4508跟帖"
-                android:textColor="#FF0000"
-                android:background="@drawable/shape_article_detail_comment_btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="云服务系统正式登陆美国股市,108美元每股，市场热度极高"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/articleDetailSrcImg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/mountain"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"/>
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="28dp"
-                android:text="澎湃新闻"
-                app:layout_constraintStart_toEndOf="@+id/articleDetailSrcImg"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="3dp"
-                android:text="12小时前"
-                app:layout_constraintStart_toEndOf="@+id/articleDetailSrcImg"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="28dp"
-                android:background="@drawable/shape_article_detail_subscribe_btn"
-                android:text="+  订阅"
-                android:textColor="@android:color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        </android.support.constraint.ConstraintLayout>
-        <!--文章详情页正文上方部分，返回，跟帖数量，来源，订阅按钮 结束-->
-
-        <!-- 文章正文 开始-->
-        <WebView
-            android:id="@+id/article_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
-        <!-- 文章正文 结束-->
-
-        <!-- 文章详情页末尾 责任编辑 我要报错 -->
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:layout_marginLeft="20dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:textColor="#A9A9A9"
-                android:text="责任编辑：山药_NN6607"/>
-
-            <Button
+                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:textColor="#A9A9A9"
-                android:background="@drawable/shape_article_detail_end_submit_error_btn"
-                android:text="我要报错"/>
+                android:layout_marginRight="15dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:text="8988跟帖"
+                android:gravity="center"
+                android:background="@drawable/selector_article_detail_topright_comment_btn_background"
+                android:textColor="@drawable/selector_article_detail_topright_comment_btn_textcolor"/>
         </RelativeLayout>
 
-        <!--文章末尾标签，关键字 开始-->
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <LinearLayout
+            android:orientation="vertical"
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="30dp">
+            android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/shape_article_detail_end_tab_btn"
-                android:text="战争"/>
+            <!--文章详情页正文上方部分，返回，跟帖数量，来源，订阅按钮 开始-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/shape_article_detail_end_tab_btn"
-                android:text="时尚"/>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="云服务系统正式登陆美国股市,108美元每股，市场热度极高"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/shape_article_detail_end_tab_btn"
-                android:text="IT"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/articleDetailSrcImg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/mountain"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/shape_article_detail_end_tab_btn"
-                android:text="测量仪"/>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:text="澎湃新闻"
+                    app:layout_constraintStart_toEndOf="@+id/articleDetailSrcImg"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/shape_article_detail_end_tab_btn"
-                android:text="山药蛋"/>
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="3dp"
+                    android:text="12小时前"
+                    app:layout_constraintStart_toEndOf="@+id/articleDetailSrcImg"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        </LinearLayout>
-        <!--文章末尾标签，关键字 结束-->
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/shape_article_detail_subscribe_btn"
+                    android:text="+  订阅"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <!--文章末尾标记喜欢人次 开始-->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
+            </android.support.constraint.ConstraintLayout>
+            <!--文章详情页正文上方部分，返回，跟帖数量，来源，订阅按钮 结束-->
 
+            <!-- 文章正文 开始-->
+            <WebView
+                android:id="@+id/article_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+            <!-- 文章正文 结束-->
+
+            <!-- 文章详情页末尾 责任编辑 我要报错 -->
             <RelativeLayout
-                android:id="@+id/id_article_detail_likenum_RL"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/selector_article_detail_end_likenum_btn_background">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="#A9A9A9"
+                    android:text="责任编辑：山药_NN6607"/>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#A9A9A9"
+                    android:background="@drawable/shape_article_detail_end_submit_error_btn"
+                    android:text="我要报错"/>
+            </RelativeLayout>
+
+            <!--文章末尾标签，关键字 开始-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="30dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/shape_article_detail_end_tab_btn"
+                    android:text="战争"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/shape_article_detail_end_tab_btn"
+                    android:text="时尚"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/shape_article_detail_end_tab_btn"
+                    android:text="IT"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/shape_article_detail_end_tab_btn"
+                    android:text="测量仪"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/shape_article_detail_end_tab_btn"
+                    android:text="山药蛋"/>
+
+            </LinearLayout>
+            <!--文章末尾标签，关键字 结束-->
+
+            <!--文章末尾标记喜欢人次 开始-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp">
+
+                <RelativeLayout
+                    android:id="@+id/id_article_detail_likenum_RL"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/selector_article_detail_end_likenum_btn_background">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <ImageView
+                            android:id="@+id/id_article_detail_likenum_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/heart_white"/>
+
+                        <TextView
+                            android:id="@+id/id_article_detail_likenum_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@drawable/selector_article_detail_end_likenum_btn_textcolor"
+                            android:text="36人喜欢"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <!--文章末尾标记喜欢人次 结束-->
+
+            <!--文章详情页分享微信好友，朋友圈，微博  开始 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true">
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_article_detail_share_tv"
+                        android:layout_marginRight="20dp">
 
-                    <ImageView
-                        android:id="@+id/id_article_detail_likenum_img"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginRight="5dp"
-                        android:src="@drawable/heart_white"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="10dp"
+                                android:src="@drawable/wechat"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000"
+                                android:text="微信"/>
+                        </LinearLayout>
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/id_article_detail_likenum_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@drawable/selector_article_detail_end_likenum_btn_textcolor"
-                        android:text="36人喜欢"/>
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_article_detail_share_tv"
+                        android:layout_marginRight="20dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="10dp"
+                                android:src="@drawable/friends"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000"
+                                android:text="朋友圈"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_article_detail_share_tv">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="10dp"
+                                android:src="@drawable/weibo"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000"
+                                android:text="微博"/>
+                        </LinearLayout>
+                    </RelativeLayout>
 
                 </LinearLayout>
-
             </RelativeLayout>
+            <!--文章详情页分享微信好友，朋友圈，微博  结束 -->
 
-        </RelativeLayout>
-        <!--文章末尾标记喜欢人次 结束-->
-
-        <!--文章详情页分享微信好友，朋友圈，微博  开始 -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/shape_article_detail_share_tv"
-                    android:layout_marginRight="20dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/wechat"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000000"
-                            android:text="微信"/>
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/shape_article_detail_share_tv"
-                    android:layout_marginRight="20dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/friends"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000000"
-                            android:text="朋友圈"/>
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/shape_article_detail_share_tv">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/weibo"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000000"
-                            android:text="微博"/>
-                    </LinearLayout>
-                </RelativeLayout>
-
-            </LinearLayout>
-        </RelativeLayout>
-        <!--文章详情页分享微信好友，朋友圈，微博  结束 -->
-
-        <!--文章详情页热门跟帖 开始-->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="热 门 跟 帖"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="17sp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/id_article_detail_hotcomment_rv"
+            <!--文章详情页热门跟帖 开始-->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="50dp">
 
-        </RelativeLayout>
-        <!--文章详情页热门跟帖 开始-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="热 门 跟 帖"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="17sp" />
 
-    </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/id_article_detail_hotcomment_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"/>
 
-</android.support.v4.widget.NestedScrollView>
+            </RelativeLayout>
+            <!--文章详情页热门跟帖 开始-->
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

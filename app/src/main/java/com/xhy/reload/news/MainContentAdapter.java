@@ -12,7 +12,6 @@ import java.util.List;
 
 public class MainContentAdapter extends FragmentPagerAdapter{
     private List<Column> columnList;
-//    private String[] titles = {"热点","头条","科技","财经","体育","时尚","社会","历史","游戏","读书","宇宙"};
 
     public MainContentAdapter(FragmentManager fm) {
         super(fm);
