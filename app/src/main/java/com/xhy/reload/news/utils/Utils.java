@@ -96,5 +96,9 @@ public class Utils {
         return articleDetailHtml;
     }
 
+    public static int getRandromNum(int MaxValue){
+        return new Random().nextInt(MaxValue);
+    }
+
 
 }

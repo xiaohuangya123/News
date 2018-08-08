@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/id_article_detail_comment_num_tv"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
@@ -28,13 +29,14 @@
                 android:paddingLeft="10dp"
                 android:text="8988跟帖"
                 android:gravity="center"
-                android:background="@drawable/selector_article_detail_topright_comment_btn_background"
-                android:textColor="@drawable/selector_article_detail_topright_comment_btn_textcolor"/>
+                android:background="@drawable/selector_article_detail_topright_comment_num_btn_background"
+                android:textColor="@drawable/selector_article_detail_topright_comment_num_btn_textcolor"/>
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/id_article_detail_nestedscrollview"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,8 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--文章详情页正文上方部分，返回，跟帖数量，来源，订阅按钮 开始-->
+            <!--文章详情页正文上方部分，标题，来源，订阅按钮 开始-->
             <android.support.constraint.ConstraintLayout
+                android:id="@+id/id_artilce_detail_head_constraintlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">

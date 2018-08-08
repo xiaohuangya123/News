@@ -1,10 +1,14 @@
 package com.xhy.reload.news;
 
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -15,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.xhy.reload.news.model.Article;
 import com.xhy.reload.news.model.Comment;
 import com.xhy.reload.news.utils.Utils;
 
@@ -26,22 +31,35 @@ import java.util.Random;
 public class ArticleActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "ArticleActivity";
     private WebView articleContentWebView;
-    private Button articleDetailBackBtn;
     private RelativeLayout articleDetailLikeNumRL;
     private TextView articleDetailLikeNumTv;
     private ImageView articleDetailLikeNumImg;
     private RecyclerView articleHotCommentRv;
     private Toolbar articleDetailToolbar;
+    private NestedScrollView articleDetailNestedScrollView;
+    private TextView articleDetailCommentNumTv;
+    private ConstraintLayout articleDetailHeadConstraintLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
-
+        //文章详情页Toolbar
         articleDetailToolbar = findViewById(R.id.id_article_detail_toolbar);
         setSupportActionBar(articleDetailToolbar);
 
-        //文件详情页文章具体内容webview实现
+        //文章详情页右上角评论数量textview实现
+        articleDetailCommentNumTv = findViewById(R.id.id_article_detail_comment_num_tv);
+        articleDetailCommentNumTv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArticleActivity.this, CommentListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //文章详情页文章具体内容webview实现
         articleContentWebView = findViewById(R.id.article_content);
         articleContentWebView.setWebViewClient(new WebViewClient());
         articleContentWebView.loadDataWithBaseURL(null, Utils.getArticleHtml(), "text/html", "UTF-8", null);
@@ -52,14 +70,35 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
         articleDetailLikeNumImg = findViewById(R.id.id_article_detail_likenum_img);
         articleDetailLikeNumTv.setOnClickListener(this);
 
-        //文章热门跟帖
+        //文章热门跟帖评论列表
         articleHotCommentRv = findViewById(R.id.id_article_detail_hotcomment_rv);
-        // TODO: 2018/7/28 用不用设置manager水平，垂直?
+        //解决NestedScrollView嵌套RecyclerView时，RecyclerView滑动卡顿问题
+        articleHotCommentRv.setNestedScrollingEnabled(false);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         articleHotCommentRv.setLayoutManager(manager);
         List<Comment> hotCommentList = getHotCommentList(1);
         ArticleHotCommentAdapter adapter = new ArticleHotCommentAdapter(hotCommentList);
         articleHotCommentRv.setAdapter(adapter);
+
+        //文章详情页NestedScrollView滚动事件监听
+        articleDetailHeadConstraintLayout = findViewById(R.id.id_artilce_detail_head_constraintlayout);
+        articleDetailNestedScrollView = findViewById(R.id.id_article_detail_nestedscrollview);
+        articleDetailNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                int articleDetailHeadHeight = articleDetailHeadConstraintLayout.getMeasuredHeight();
+                //向上滚动
+                if(scrollY > oldScrollY && scrollY > articleDetailHeadHeight){
+                    articleDetailCommentNumTv.setText("已有8988人跟帖");
+                    articleDetailCommentNumTv.setSelected(true);
+                }
+                //向下滚动
+                if(scrollY < oldScrollY && scrollY < articleDetailHeadHeight){
+                    articleDetailCommentNumTv.setText("8988跟帖");
+                    articleDetailCommentNumTv.setSelected(false);
+                }
+            }
+        });
 
     }
 

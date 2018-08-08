@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.xhy.reload.news.model.Comment;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class ArticleHotCommentAdapter extends RecyclerView.Adapter<ArticleHotCom
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.article_detail_hotcomment,parent,false);
+                .inflate(R.layout.article_detail_hotcomment_item,parent,false);
         return new ViewHolder(view);
     }
 
@@ -43,12 +42,11 @@ public class ArticleHotCommentAdapter extends RecyclerView.Adapter<ArticleHotCom
         holder.hotCommentPublishTimeTv.setText(comment.getComPublishTimeStr());
         holder.hotCommentZanNumTv.setText(comment.getComZanNum() + "项");
         holder.hotCommentContent.setText(comment.getComContent());
-
-
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
 
+        // TODO: 2018/8/8 这里错误 应该是imageview 或circleimageview
         ImageView hotCommentTouXiangTv;
         TextView hotCommnetAuthorTv;
         TextView hotCommentAddrTv;
