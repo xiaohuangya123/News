@@ -15,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.xhy.reload.news.model.Article;
+import com.xhy.reload.news.utils.MyApplication;
 import com.xhy.reload.news.utils.Utils;
 
 import org.litepal.LitePal;
@@ -77,7 +79,7 @@ public class MainContentFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Article article = articleList.get(position);
-            holder.imgArticleItem.setImageResource(article.getTitleImg());
+            Glide.with(MyApplication.getContext()).load(article.getTitleImg()).into(holder.imgArticleItem);
             holder.titleArticleItem.setText(article.getTitle());
             holder.authorArticleItem.setText(article.getAuthor());
             holder.commentNumArticleItem.setText(new Random().nextInt(1000)+"跟帖");

@@ -32,13 +32,12 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
 
     @Override
     public int getGroupCount() {
-        Log.d("Rxjava " , "GroupCount = " + groupCommentList.size());
         return groupCommentList.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        //用于解决有些评论没有子评论也就是回复（children层评论）时，展开group层评论不报错
+        //用于解决有些评论没有子评论也就是回复（children层评论）时，展开group层评论报错问题
         if(groupPosition + 1 > childCommentList.size()){
             return 0;
         }
@@ -152,5 +151,12 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
         TextView childrenPublshTime;
         TextView childrenContent;
         TextView childrenAddr;
+    }
+
+    public void addGroupCommentAndShow(Comment comment){
+        if(comment != null){
+            groupCommentList.add(comment);
+        }
+        notifyDataSetChanged();
     }
 }

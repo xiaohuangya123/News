@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.xhy.reload.news.model.Comment;
+import com.xhy.reload.news.utils.MyApplication;
+import com.xhy.reload.news.utils.Utils;
 
 import java.util.List;
 
@@ -36,6 +39,7 @@ public class ArticleHotCommentAdapter extends RecyclerView.Adapter<ArticleHotCom
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Comment comment = hotCommentList.get(position);
         holder.hotCommentTouXiangTv.setImageResource(comment.getComAuthorImg());
+        Glide.with(MyApplication.getContext()).load(comment.getComAuthorImg()).into(holder.hotCommentTouXiangTv);
         holder.hotCommnetAuthorTv.setText(comment.getComAuthor());
         holder.hotCommentAddrTv.setText(comment.getComAaddress());
         holder.hotCommentPhoneTv.setText(comment.getComPhone());
