@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -83,9 +90,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:layout_behavior="@string/bottom_sheet_behavior"
         android:background="@color/white">
 
-        <EditText
+        <TextView
             android:id="@+id/id_comment_list_write_gentie_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,3 +111,4 @@
     </RelativeLayout>
 
 </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,5 +1,6 @@
 package com.xhy.reload.news;
 
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,11 +24,10 @@ public class CommentListActivity extends AppCompatActivity implements View.OnCli
 
     private Toolbar commentListToolbar;
     private ExpandableListView commentListExpandableListView;
-    private EditText commentListWriteGentieEt;
+    private TextView commentListWriteGentieTv;
     private BottomSheetDialog commentDialog;
     private EditText commentListInputEt;
     private TextView commentListSubmitTv;
-    View view;
 
     private CommentListExpandableListViewAdapter adapter;
 
@@ -66,14 +66,9 @@ public class CommentListActivity extends AppCompatActivity implements View.OnCli
         }
 
         //写跟帖
-        commentListWriteGentieEt = findViewById(R.id.id_comment_list_write_gentie_tv);
-        commentListWriteGentieEt.setOnClickListener(this);
-        // 初始化用于写评论的dialog内的view
-        view =  LayoutInflater.from(CommentListActivity.this)
-                .inflate(R.layout.comment_list_dialog, null);
-        commentListInputEt = view.findViewById(R.id.id_comment_list_input_edittext);
-        commentListSubmitTv = view.findViewById(R.id.id_comment_list_submit_gentie_tv);
-        commentListSubmitTv.setOnClickListener(this);
+        commentListWriteGentieTv = findViewById(R.id.id_comment_list_write_gentie_tv);
+        commentListWriteGentieTv.setOnClickListener(this);
+
 
     }
 
@@ -96,28 +91,32 @@ public class CommentListActivity extends AppCompatActivity implements View.OnCli
                 adapter.addGroupCommentAndShow(comment);
                 commentDialog.dismiss();
                 break;
-
         }
     }
 
     private void showCommentDialog(){
         if(null == commentDialog){
+            View view =  LayoutInflater.from(CommentListActivity.this)
+                    .inflate(R.layout.comment_list_dialog, null);
+            commentListInputEt = view.findViewById(R.id.id_comment_list_input_edittext);
+            commentListSubmitTv = view.findViewById(R.id.id_comment_list_submit_gentie_tv);
+            commentListSubmitTv.setOnClickListener(this);
             commentDialog = new BottomSheetDialog(CommentListActivity.this);
             commentDialog.setContentView(view);
         }
         commentListInputEt.getText().clear();
 
-        // TODO: 2018/8/9 自动弹出键盘 还没有实现
-        commentListInputEt.setFocusable(true);
-        commentListInputEt.setFocusableInTouchMode(true);
-        //请求获得焦点
-        commentListInputEt.requestFocus();
-        //调用系统输入法
-//        this.getWindow().setSoftInputMode(
-//                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-//        commentDialog.getWindow().setSoftInputMode(
-//                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        //Edittext获取焦点自动弹出键盘
+//        commentListInputEt.setFocusable(true);
+//        commentListInputEt.setFocusableInTouchMode(true);
+//        commentListInputEt.requestFocus();
+
         commentDialog.show();
+// TODO: 2018/8/18  弹出键盘遮挡dialog问题还没有解决 
+//        commentDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+//        commentDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+
     }
 
     @Override
