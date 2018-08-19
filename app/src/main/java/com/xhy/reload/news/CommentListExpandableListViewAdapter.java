@@ -1,13 +1,23 @@
 package com.xhy.reload.news;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xhy.reload.news.model.Comment;
+import com.xhy.reload.news.utils.MyApplication;
 
 import java.util.List;
 
@@ -22,6 +32,10 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
 
     private List<Comment> groupCommentList;
     private List<List<Comment>> childCommentList;
+    private Activity myContext;
+    //获取点击坐标
+    private float touchX;
+    private float touchY;
 
     public CommentListExpandableListViewAdapter(List<Comment> groupCommentList
             , List<List<Comment>> childCommentList){
@@ -29,6 +43,13 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
         this.childCommentList = childCommentList;
     }
 
+    public CommentListExpandableListViewAdapter(List<Comment> groupCommentList
+            , List<List<Comment>> childCommentList
+            , Activity myContext) {
+        this.groupCommentList = groupCommentList;
+        this.childCommentList = childCommentList;
+        this.myContext = myContext;
+    }
 
     @Override
     public int getGroupCount() {
@@ -124,6 +145,34 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
         childHolder.childrenPublshTime.setText(childrenCommemt.getComPublishTimeStr());
         childHolder.childrenZanNum.setText(childrenCommemt.getComZanNum() + "");
         childHolder.childrenContent.setText(childrenCommemt.getComContent());
+
+        childHolder.childrenContent.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                touchX = event.getRawX();
+                touchY = event.getRawY();
+                Log.d("Rxjava " ," X= " + touchX + " Y= " + touchY);
+                return false;
+            }
+        });
+
+        //给子评论增加点击事件
+        childHolder.childrenContent.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                CommentListReplyDialog replyDialog = new CommentListReplyDialog(myContext);
+                //去掉dialog蒙层
+                replyDialog.getWindow().setDimAmount(0f);
+
+                Window window = replyDialog.getWindow();
+                WindowManager.LayoutParams params = window.getAttributes();
+                params.y = (int)touchY - 350;
+                window.setAttributes(params);
+                window.setGravity(Gravity.TOP);
+                replyDialog.show();
+            }
+        });
         return convertView;
     }
 

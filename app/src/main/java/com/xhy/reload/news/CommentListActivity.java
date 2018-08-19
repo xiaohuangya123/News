@@ -1,14 +1,14 @@
 package com.xhy.reload.news;
 
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -19,6 +19,7 @@ import com.xhy.reload.news.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 
 public class CommentListActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -58,7 +59,8 @@ public class CommentListActivity extends AppCompatActivity implements View.OnCli
         childrenList.add(list3);
         childrenList.add(list4);
         childrenList.add(list5);
-        adapter = new CommentListExpandableListViewAdapter(groupList,childrenList);
+        adapter = new CommentListExpandableListViewAdapter(groupList,
+                childrenList,CommentListActivity.this);
         commentListExpandableListView.setAdapter(adapter);
         //展开所有group层评论，显示下面的children层评论
         for (int i = 0; i <groupList.size() ; i++) {
@@ -116,8 +118,8 @@ public class CommentListActivity extends AppCompatActivity implements View.OnCli
 //        commentDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
 //        commentDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
