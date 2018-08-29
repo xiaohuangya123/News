@@ -151,7 +151,6 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
             public boolean onTouch(View v, MotionEvent event) {
                 touchX = event.getRawX();
                 touchY = event.getRawY();
-                Log.d("Rxjava " ," X= " + touchX + " Y= " + touchY);
                 return false;
             }
         });
@@ -167,7 +166,7 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
 
                 Window window = replyDialog.getWindow();
                 WindowManager.LayoutParams params = window.getAttributes();
-                params.y = (int)touchY - 350;
+                params.y = (int)touchY - v.getHeight() * 4;
                 window.setAttributes(params);
                 window.setGravity(Gravity.TOP);
                 replyDialog.show();

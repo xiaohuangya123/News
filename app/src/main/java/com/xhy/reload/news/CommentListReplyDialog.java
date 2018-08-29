@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,14 +17,22 @@ public class CommentListReplyDialog extends Dialog implements View.OnClickListen
     private TextView commentListDialogisfloatCopyTv;
     private TextView commentListDialogisfloatMoreTv;
 
+    public CommentListReplyDialog(@NonNull Context context, int themeResId) {
+        super(context, themeResId);
+        myContext = context;
+    }
+
     public CommentListReplyDialog(@NonNull Context context) {
         super(context);
         myContext = context;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.comment_list_reply_dialog);
         commentListDialogisfloatReplyTv = findViewById(R.id.id_comment_list_dialogisfloat_reply_tv);
         commentListDialogisfloatShareTv = findViewById(R.id.id_comment_list_dialogisfloat_share_tv);

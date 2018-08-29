@@ -66,5 +66,15 @@ public class MainActivity extends AppCompatActivity {
         return cols;
     }
 
-
+    //实现两次点击back键退出应用程序
+    Long firstTime = 0L;
+    @Override
+    public void onBackPressed() {
+        Long currentTime = System.currentTimeMillis();
+        if(currentTime - firstTime < 2000){
+            finish();
+        }else {
+            firstTime = currentTime;
+        }
+    }
 }
