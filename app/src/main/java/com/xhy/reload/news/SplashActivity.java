@@ -47,6 +47,7 @@ public class SplashActivity extends AppCompatActivity {
 
             // TODO: 2018/7/30 请求新闻客户端第一个栏目的文章列表
             getArticleListFromServerAndSaveToDb(1);
+
         }
 
 

@@ -12,7 +12,7 @@
     <style name="TabLayout.tabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">15sp</item>
         <item name="textAllCaps">false</item>
-        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textStyle">bold</item>
     </style>
     
     <!--启动页设置-->

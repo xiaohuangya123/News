@@ -13,7 +13,7 @@
         app:tabTextAppearance="@style/TabLayout.tabText"
         app:tabSelectedTextColor="#000000"/>
     <android.support.v4.view.ViewPager
-        android:id="@+id/mainArticleList"
+        android:id="@+id/id_mainArticleList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

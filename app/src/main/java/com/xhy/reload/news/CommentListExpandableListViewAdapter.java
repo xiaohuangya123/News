@@ -166,7 +166,7 @@ public class CommentListExpandableListViewAdapter extends BaseExpandableListAdap
 
                 Window window = replyDialog.getWindow();
                 WindowManager.LayoutParams params = window.getAttributes();
-                params.y = (int)touchY - v.getHeight() * 4;
+                params.y = (int)touchY - 350;
                 window.setAttributes(params);
                 window.setGravity(Gravity.TOP);
                 replyDialog.show();

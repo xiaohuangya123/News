@@ -19,14 +19,33 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.xhy.reload.news.model.Article;
 import com.xhy.reload.news.model.Comment;
+import com.xhy.reload.news.utils.FileUtils;
+import com.xhy.reload.news.utils.HttpUtil;
+import com.xhy.reload.news.utils.JsonParseUtil;
 import com.xhy.reload.news.utils.Utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class ArticleActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "ArticleActivity";
@@ -39,6 +58,8 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
     private NestedScrollView articleDetailNestedScrollView;
     private TextView articleDetailCommentNumTv;
     private ConstraintLayout articleDetailHeadConstraintLayout;
+
+    private List<Comment> commentList = new ArrayList<>();
 
 
     @Override
@@ -87,12 +108,12 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 int articleDetailHeadHeight = articleDetailHeadConstraintLayout.getMeasuredHeight();
-                //向上滚动
+                //向下滚动
                 if(scrollY > oldScrollY && scrollY > articleDetailHeadHeight){
                     articleDetailCommentNumTv.setText("已有8988人跟帖");
                     articleDetailCommentNumTv.setSelected(true);
                 }
-                //向下滚动
+                //向上滚动
                 if(scrollY < oldScrollY && scrollY < articleDetailHeadHeight){
                     articleDetailCommentNumTv.setText("8988跟帖");
                     articleDetailCommentNumTv.setSelected(false);
@@ -125,10 +146,12 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     //获取热门跟帖内容
-    private List<Comment> getHotCommentList(int articleId){
-        List<Comment> commentList = new ArrayList<>();
-        for (int i = 0; i <20 ; i++) {
+    private List<Comment> getHotCommentList(final int articleId){
+
+        for (int i = 0; i <10 ; i++) {
             Comment comment = new Comment();
+            comment.setComArticleId(i+"");
+            comment.setComPublishTime(new Date());
             comment.setComAuthorImg(Utils.getImgSrc());
             comment.setComAuthor(Utils.getAuthor());
             comment.setComAaddress(Utils.getAddr());
@@ -138,7 +161,40 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
             comment.setComZanNum(new Random().nextInt(1000));
             commentList.add(comment);
         }
-        return  commentList;
+
+//        Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+//                emitter.onNext(articleId);
+//                emitter.onComplete();
+//            }
+//        }).subscribeOn(Schedulers.io())
+//
+//          .flatMap(new Function<Integer, ObservableSource<List<Comment>>>() {
+//            @Override
+//            public ObservableSource<List<Comment>> apply(Integer integer) throws Exception {
+//                String commentJson = HttpUtil.sendOkhttpRequest("http://101.251.230.234:8080/news/comments.json");
+//                List<Comment> cList = JsonParseUtil.parseCommentJsonWithGSON(commentJson);
+//                return Observable.just(cList);
+//            }
+//        }) .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<List<Comment>>() {
+//            @Override
+//            public void onSubscribe(Disposable d) {           }
+//
+//            @Override
+//            public void onNext(List<Comment> cList) {
+//                commentList = cList.subList(0,10);
+//                Log.d("Rxjava" ,"+++++++++++" + commentList.size() + "");
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {      e.printStackTrace();      }
+//
+//            @Override
+//            public void onComplete() {          }
+//        });
+
+        return commentList;
     }
 
     //设置webview各种设置 此方法暂时没有被调用

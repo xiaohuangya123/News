@@ -46,6 +46,7 @@ public class MainContentFragment extends Fragment {
         articleItemRecyclerView.setLayoutManager(manager);
         final ArticleItemAdapter adapter = new ArticleItemAdapter(getArticleListFromDB());
         articleItemRecyclerView.setAdapter(adapter);
+
         //文章列表刷新功能实现
         articleItemSwipeRefreshLayout = view.findViewById(R.id.id_articleItemSwipeRefreshLayout);
         articleItemSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

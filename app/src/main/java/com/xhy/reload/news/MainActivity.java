@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         //获取导航栏
         columnList = getColumnsFromDb();
 
-        mainArticleListViewpager = findViewById(R.id.mainArticleList);
+        mainArticleListViewpager = findViewById(R.id.id_mainArticleList);
         headNavTablayout = findViewById(R.id.headNav);
         MainContentAdapter adapter = new MainContentAdapter(columnList,getSupportFragmentManager());
         mainArticleListViewpager.setAdapter(adapter);

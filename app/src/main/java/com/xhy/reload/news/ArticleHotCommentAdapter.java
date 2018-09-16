@@ -18,8 +18,15 @@ import java.util.List;
 public class ArticleHotCommentAdapter extends RecyclerView.Adapter<ArticleHotCommentAdapter.ViewHolder>{
     private List<Comment> hotCommentList;
 
+
     public ArticleHotCommentAdapter(List<Comment> hotCommentList) {
         this.hotCommentList = hotCommentList;
+    }
+
+    //可以用于后续加载更多评论
+    public void setHotCommentList(List<Comment> hotCommentList) {
+        this.hotCommentList = hotCommentList;
+        notifyDataSetChanged();
     }
 
     @NonNull
